@@ -11,7 +11,7 @@ type alias Model = String
 
 init : Model
 init =
-        "INSERT"
+        "n"
 
 type Msg
         = Increment
@@ -22,10 +22,10 @@ update : Msg -> Model -> Model
 update msg model =
         case msg of
                 Increment ->
-                        String.append model msg
+                        String.append model "yo"
 
                 Decrement ->
-                        String.dropRight String.length msg model
+                        String.dropRight (String.length init) model
 
 view : Model -> Html Msg
 view model =
