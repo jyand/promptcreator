@@ -24,6 +24,7 @@ type Msg
         = IncrementMu
         | IncrementLambda
         | Decrement
+        | Clear
 
 
 update : Msg -> Model -> Model
@@ -36,12 +37,14 @@ update msg model =
 
                 Decrement ->
                         String.dropRight 1 model
-                        --String.dropRight (String.length init) model
+                Clear ->
+                        String.dropLeft (String.length model) model
 
 view : Model -> Html Msg
 view model =
         div []
-                [ button [ onClick Decrement ] [ text "delete" ]
+                [ button [ onClick Clear ] [ text "clear" ]
+                ,button [ onClick Decrement ] [ text "delete" ]
                 , div [] [ text model ]
                 , button [ onClick IncrementMu ] [ text (Maybe.withDefault init um) ]
                 , button [ onClick IncrementLambda ] [ text (Maybe.withDefault init ul) ]

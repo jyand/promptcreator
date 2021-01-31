@@ -1,4 +1,10 @@
+div {
+        text-align: center ;
+}
+
 body {
+        padding-top: 10% ;
+        float: center ;
         background-color: #002b36 ;
         color: #ffffff ;
         text-decoration: none ;
