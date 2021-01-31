@@ -30,10 +30,10 @@ func SwitchFormat(s []string, n uint64) []string {
         irreg := regexp.MustCompile(GRE_ECMA)
         reg := regexp.MustCompile(GRE_READABLE)
 
-        if irreg.MatchString(s[n]) {
-                s[n] = strings.ReplaceAll(s[n], ECMA, READABLE)
-        } else if reg.MatchString(s[n]) {
-                s[n] = strings.ReplaceAll(s[n], READABLE, ECMA)
+        if reg.MatchString(s[n]) {
+                s[n] = strings.Replace(s[n], READABLE, ECMA, -1)
+        } else if irreg.MatchString(s[n]) {
+                s[n] = strings.Replace(s[n], ECMA, READABLE, -1)
         }
 
         if n < 1 {
