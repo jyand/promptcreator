@@ -1,13 +1,17 @@
 package main
 
 import (
-        "os"
         "bufio"
+        "os"
+        "fmt"
         "regexp"
+        "strings"
 )
 
-const ECMA string = " {2}"
-const READABLE string = " {8}"
+const GRE_ECMA string = "^( {2})"
+const GRE_READABLE string = "^( {8})"
+const ECMA string = "  "
+const READABLE string = "        "
 
 func StringsFromFile(fpath string) []string {
         f, _ := os.Open(fpath)
@@ -22,6 +26,33 @@ func StringsFromFile(fpath string) []string {
         return s
 }
 
+func SwitchFormat(s []string, n uint64) []string {
+        irreg := regexp.MustCompile(GRE_ECMA)
+        reg := regexp.MustCompile(GRE_READABLE)
+
+        if irreg.MatchString(s[n]) {
+                s[n] = strings.ReplaceAll(s[n], ECMA, READABLE)
+        } else if reg.MatchString(s[n]) {
+                s[n] = strings.ReplaceAll(s[n], READABLE, ECMA)
+        }
+
+        if n < 1 {
+                return s
+        }
+
+        return SwitchFormat(s, n-1)
+}
+
+func Echo(s []string, n uint64) {
+        if n == uint64(len(s)) {
+                return
+        }
+        fmt.Println(s[n])
+        Echo(s, n+1)
+}
+
 func main() {
-        //os.Args[1]
+        lines := StringsFromFile(os.Args[1])
+        N := uint64(len(lines)) - 1
+        Echo(SwitchFormat(lines, N), 0)
 }
