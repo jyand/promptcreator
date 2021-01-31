@@ -4,6 +4,10 @@ import Browser
 import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick, onInput, onSubmit)
 
+import Array
+
+import Special as Sp
+
 main =
         Browser.sandbox { init = init, update = update, view = view }
 
@@ -11,26 +15,34 @@ type alias Model = String
 
 init : Model
 init =
-        "n"
+        "yo"
+
+um = Array.get 0 (Array.fromList Sp.utfChars) 
+ul = Array.get 1 (Array.fromList Sp.utfChars) 
 
 type Msg
-        = Increment
+        = IncrementMu
+        | IncrementLambda
         | Decrement
 
 
 update : Msg -> Model -> Model
 update msg model =
         case msg of
-                Increment ->
-                        String.append model "yo"
+                IncrementMu ->
+                        String.append model (Maybe.withDefault init um)
+                IncrementLambda ->
+                        String.append model (Maybe.withDefault init ul)
 
                 Decrement ->
-                        String.dropRight (String.length init) model
+                        String.dropRight 1 model
+                        --String.dropRight (String.length init) model
 
 view : Model -> Html Msg
 view model =
         div []
-                [ button [ onClick Decrement ] [ text "sub" ]
+                [ button [ onClick Decrement ] [ text "delete" ]
                 , div [] [ text model ]
-                , button [ onClick Increment ] [ text "add" ]
+                , button [ onClick IncrementMu ] [ text (Maybe.withDefault init um) ]
+                , button [ onClick IncrementLambda ] [ text (Maybe.withDefault init ul) ]
                 ]

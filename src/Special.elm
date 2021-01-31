@@ -27,8 +27,11 @@ envNames =
 envValues =
         ["\\u", "@", "\\h", "\\w", "\\W", "\\s", "\\v", "\\l", "\\!", "\\j", "\\d", "\\t", "\\@"]
 
-utfChars =
+utfNames =
         ["mu", "lambda"]
+
+utfChars =
+        ["λ", "μ"]
 
 utfValues =
         ["\\U000003bc", "\\U000003bb"]
