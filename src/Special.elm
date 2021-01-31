@@ -8,12 +8,27 @@ controls =
 colorNames =
         ["Dark Gray", "Red", "Green", "Yellow", "Blue", "Purple", "Turquoise", "Light Gray"]
 
-colorANSI: Int -> List String -> List String
-colorANSI k color =
+colors: Int -> List String -> List String
+colors k color =
         if k < 1 then
                 color
         else
-               colorANSI (k - 1) (["\\e[3" ++ String.fromInt(k - 1) ++ "m"] ++ color)
+               colors (k - 1) (["\\e[3" ++ String.fromInt(k - 1) ++ "m"] ++ color)
 
-colors =
-        colorANSI (List.length colorNames) []
+colorANSI =
+        colors (List.length colorNames) []
+
+colorHex =
+        ["#525252", "#ff0000", "#006318", "#ffff00", "#0034ff", "#6d1c88", "#00a288", "#aaaaab"]
+
+envNames =
+        ["username", "@", "hostname", "working directory (~)", "working directory (long)", "shell", "shell version", "terminal emulator", "command history number", "number of jobs", "date", "time (24-hour)", "time (12-hour)"]
+
+envValues =
+        ["\\u", "@", "\\h", "\\w", "\\W", "\\s", "\\v", "\\l", "\\!", "\\j", "\\d", "\\t", "\\@"]
+
+utfChars =
+        ["mu", "lambda"]
+
+utfValues =
+        ["\\U000003bc", "\\U000003bb"]
