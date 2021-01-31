@@ -1,0 +1,5 @@
+#!/bin/sh
+
+elm make --optimize src/Main.elm --output=assets/elm.js
+
+go build util/indentconv.go && mv indentconv $HOME/.local/bin
