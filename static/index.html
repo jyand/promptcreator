@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="utf-8"/>
-        <title>John DeSalvo</title>
-        <link href="index.css" rel="stylesheet" type="text/css"></link>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+  <style>body { padding: 0; margin: 0; }</style>
 </head>
-<nav>
-</nav>
 <body>
-        <header id="term" name="term">
-        </header>
-        <main id="main" name="main">
-                <strong><menu id="controls"></strong></menu>
-                <p>Add the following line to your .bashrc, .zshrc, kshrc, .bash_profile, .zprofile, .profile, or whatever else!</p>
-                <section id="ps" name="ps">
-                        export PS1=""
-                </section>
-        </main>
-        <script type="module" src="scripts/main.js"></script>
-        <footer>&copy;Copyright 2021 - John DeSalvo</footer>
+<pre id="elm"></pre>
+<script src="../assets/elm.js"></script>
+<script>var app = Elm.Main.init({ node: document.getElementById("elm") });</script>
 </body>
 </html>
