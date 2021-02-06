@@ -26,7 +26,6 @@ type Msg
         | Decrement
         | Clear
 
-
 update : Msg -> Model -> Model
 update msg model =
         case msg of
@@ -34,7 +33,6 @@ update msg model =
                         String.append model (Maybe.withDefault init um)
                 IncrementLambda ->
                         String.append model (Maybe.withDefault init ul)
-
                 Decrement ->
                         String.dropRight 1 model
                 Clear ->
