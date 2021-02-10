@@ -2,7 +2,8 @@ module Main exposing (..)
 
 import Browser
 import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick, onInput, onSubmit)
+import Html.Events exposing (on, onClick, onInput, onSubmit)
+import Json.Decode
 
 import Array
 
@@ -25,6 +26,7 @@ type Msg
         | IncrementLambda
         | Decrement
         | Clear
+        | SelectColor
 
 update : Msg -> Model -> Model
 update msg model =
@@ -37,12 +39,16 @@ update msg model =
                         String.dropRight 1 model
                 Clear ->
                         String.dropLeft (String.length model) model
+                SelectColor c ->
+                        { model | color = c }
 
 view : Model -> Html Msg
 view model =
         div []
                 [ button [ onClick Clear ] [ text "clear" ]
-                ,button [ onClick Decrement ] [ text "delete" ]
+                , button [ onClick Decrement ] [ text "delete" ]
+                , select [ on "change" (Json.Decode.map SelectColor Sp.colorNames) ]
+                        (List.map Sp.colorHex)
                 , div [] [ text model ]
                 , button [ onClick IncrementMu ] [ text (Maybe.withDefault init um) ]
                 , button [ onClick IncrementLambda ] [ text (Maybe.withDefault init ul) ]
