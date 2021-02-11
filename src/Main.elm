@@ -1,7 +1,8 @@
 module Main exposing (..)
 
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, option, button, div, text)
+import Html.Attributes exposing (disabled, selected, value)
 import Html.Events exposing (on, onClick, onInput, onSubmit)
 import Json.Decode
 
